@@ -16,7 +16,6 @@ void height_convert(void){
     std::cout << "Your height is " << height << " m";
     std::cout << " = " << height * meter2foot << " foot";
     std::cout << " = " << height * meter2inch << " inch.\n";
-
 }
 
 /**
@@ -182,6 +181,6 @@ void fuel_consumption_style_convert(){
 }
 
 int main(void){
-
+    fuel_consumption_style_convert();
     return 0;
 }
