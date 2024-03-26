@@ -256,11 +256,68 @@ void init_ptr(void){
 }
 
 void use_new(void){
-    
+    int nights = 1001;
+    int* pt = new int;
+    *pt = 1001;
+
+    std::cout << "nights value = " << nights << " : location = "
+	      << &nights << ".\n";
+    std::cout << "int value = " << *pt << " : location = "
+	      << pt << ".\n";
+
+    double* pd = new double;
+    *pd = 10000001.0;
+
+    std::cout << "double value = " << *pd << " :location = "
+	      << pd << ".\n";
+    std::cout << "location of pointer pd = " << &pd << ".\n";
+    std::cout << "size of pt = " << sizeof(pt)
+	      << "; size of *pt = " << sizeof(*pt) << ".\n";
+    std::cout << "size of pd = " << sizeof(pd)
+	      << "; size of *pd = " << sizeof(*pd)<< ".\n";
+}
+
+void arraynew(void){
+    double* p3 = new double[3];
+    p3[0] = 0.2;
+    p3[1] = 0.5;
+    p3[2] = 0.8;
+    std::cout << "p3[1] = " << p3[1] << ".\n";
+    p3 += 1;
+    std::cout << "p3 += 1; now p3[0] = " << p3[0] << " and "
+	 << "p3[1] = " << p3[1] << ".\n";
+    p3 -= 1;
+    delete [] p3;
+}
+
+void addpntrs(void){
+    double wages[3] = {10000.0, 20000.0, 30000.0};
+    short stacks[3] = {3, 2, 1};
+
+    double* pw = wages;
+    short* ps = &stacks[0]; // &stacks[0] == stacks
+
+    std::cout << "pw = " << pw << ", *pw = " << *pw << ".\n";
+    pw += 1;
+    std::cout << "pw += 1; now pw = " << pw << ", *pw = " << *pw << ".\n\n";
+
+    std::cout << "ps = " << ps << ", *ps = " << *ps << ".\n";
+    ps += 1;
+    std::cout << "ps += 1; now ps = " << ps << ", *ps = " << *ps << ".\n\n";
+
+    std::cout << "access two elements with array notation\n"
+	      << "stacks[0] = " << stacks[0]
+	      << ", stacks[1] = " << stacks[1] << ".\n";
+    std::cout << "access two elements with array notation\n"
+	      << "*stacks = " << *stacks
+	      << ", *(stacks + 1) = " << *(stacks + 1) << ".\n";
+
+    std::cout << sizeof(wages) << " = size of wages array\n"
+	      << sizeof(pw) << " = size of pw pointer\n";
 }
 
 int main(void)
 {
-    use_new();
+    addpntrs();
     return 0;
 }

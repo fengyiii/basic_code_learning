@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++11
 
-SRCS = $(filter-out $(CURDIR)/test.cpp, $(wildcard $(CURDIR)/*.cpp))
-TEST =  $(wildcard $(CURDIR)/test.cpp)
+SRCS = $(filter-out test.cpp, $(wildcard *.cpp))
+TEST =  $(wildcard test.cpp)
 OBJS = $(SRCS:.cpp=.o)
 OBJT = $(TEST:.cpp=.o)
 EXEC = demo.exe
