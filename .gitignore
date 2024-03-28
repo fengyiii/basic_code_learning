@@ -33,3 +33,8 @@
 
 # ide
 .vscode
+
+# output
+*.html
+*.tex
+*.pdf

@@ -2,6 +2,8 @@
 #include <cmath>
 #include <cstring> //strlen
 #include <string> // string class
+#include <vector> // vector class
+#include <array> // array class
 
 void arry_test(void){
     int yams[3];
@@ -316,8 +318,56 @@ void addpntrs(void){
 	      << sizeof(pw) << " = size of pw pointer\n";
 }
 
+void mixtypes(void){
+    struct antarctica_years_end{
+	int year;
+	// other data
+    };
+
+    antarctica_years_end s01, s02, s03;
+    s01.year = 1998;
+    antarctica_years_end* pa = &s02;
+    pa->year = 1999;
+    antarctica_years_end trio[3];
+    trio[0].year = 2003;
+
+    std::cout << "trio->year = " << trio->year << ".\n";
+    const antarctica_years_end* arp[3] = {&s01, &s02, &s03};
+    std::cout << "arp[1]->year = " << arp[1]->year << ".\n";
+    const antarctica_years_end** ppa = arp;
+    auto ppb = arp; // equal to last
+    std::cout << "(*ppa)->year = " << (*ppa)->year << ".\n"
+	      << "(*(ppb+1))->year = " << (*(ppb+1))->year << ".\n";
+}
+
+void choices(void){
+    // C style
+    double a1[4] = {1.2, 2.4, 3.6, 4.8};
+    // C++98 STL vector
+    std::vector<double> a2(4);
+    a2[0] = 1.0/3.0;
+    a2[1] = 1.0/5.0;
+    a2[2] = 1.0/7.0;
+    a2[3] = 1.0/9.0;
+    // C++11 array
+    std::array<double, 4> a3 = {3.14, 2.72, 1.62, 1.41};
+    std::array<double, 4> a4;
+    a4 = a3; // valid if same size
+
+    std::cout << "a1[2] = " << a1[2] << " at " << &a1[2] << ".\n"
+	      << "a2[2] = " << a2[2] << " at " << &a2[2] << ".\n"
+	      << "a3[2] = " << a3[2] << " at " << &a3[2] << ".\n"
+	      << "a4[2] = " << a4[2] << " at " << &a4[2] << ".\n";
+
+    std::cout << "\nset a1[-2] = 20.2\n";
+    a1[-2] = 20.2; // over array scale
+    std::cout << "a1[-2] = " << a1[-2] << " at " << &a1[-2] << ".\n"
+	      << "a3[2] = " << a3[2] << " at " << &a3[2] << ".\n"
+	      << "a4[2] = " << a4[2] << " at " << &a4[2] << ".\n";
+}
+
 int main(void)
 {
-    addpntrs();
+    choices();
     return 0;
 }
